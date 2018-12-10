@@ -35,3 +35,43 @@ export const toggleFilter = filter => ({
   type: TOGGLE_FILTER,
   filter
 })
+
+export const fetchStatusList = {
+  REQUEST_TODO: 'REQUEST_TODO',
+  RECEIVE_TODO_SUCCESS: 'RECEIVE_TODO_SUCCESS',
+  RECEIVE_TODO_FAIL: 'RECEIVE_TODO_FAIL',
+}
+
+export const fetchTodo = () => {
+  return (dispatch, getState) => {
+    dispatch(requestTodo)
+    return fetch('/test.json')
+      .then(handleErrors)
+      .then(data => data.json())
+      .then(json => dispatch(receiveTodoSuccess(json)))
+      .catch(err => dispatch(receiveTodoFail()))
+  }
+}
+
+const requestTodo = () => ({
+  type: fetchStatusList.REQUEST_TODO
+})
+
+const receiveTodoSuccess = ({data}) => ({
+  type: fetchStatusList.RECEIVE_TODO_SUCCESS,
+  todos: data,
+  receivedAt: Date.now()
+})
+
+const receiveTodoFail = () => ({
+  type: fetchStatusList.RECEIVE_TODO_FAIL,
+  todos: [],
+  receivedAt: Date.now()
+})
+
+const handleErrors = (response) => {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}
