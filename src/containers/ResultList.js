@@ -8,7 +8,7 @@ class ResultList extends Component {
     let { todos, filter, toggleRow, deleteTodo } = this.props;
     let selection = (todo) => {
       if (todo.deleted) return false;
-      
+
       switch (filter) {
         case SHOW_ACTIVE:
           return todo.active;
@@ -33,10 +33,10 @@ class ResultList extends Component {
   }
 }
 
-const mapStateToProps = ({ todos, filter }) => {
+const mapStateToProps = ({ todos, filter }, ownProps) => {
   return {
     todos,
-    filter
+    filter: ownProps.filter ? ownProps.filter : filter
   }
 }
 

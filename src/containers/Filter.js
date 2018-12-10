@@ -23,8 +23,8 @@ class Filter extends Component {
   }
 }
 
-const mapStateToProps = ({ filter }) => ({
-  filter
+const mapStateToProps = ({ filter }, ownProps) => ({
+  filter: ownProps.filter ? ownProps.filter : filter
 })
 
 export default connect(mapStateToProps)(Filter);

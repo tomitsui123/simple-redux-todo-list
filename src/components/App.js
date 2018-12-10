@@ -6,12 +6,13 @@ import Filter from '../containers/Filter';
 
 class App extends Component {
   render() {
+    let { params } = this.props.match;
     return (
       <div className="App">
         <h4>Redux Todo list!!!</h4>
         <InputField />
-        <ResultList />
-        <Filter />
+        <ResultList filter={params.filter || 'SHOW_ALL'} />
+        <Filter  filter={params.filter || 'SHOW_ALL'} />
       </div>
     );
   }
