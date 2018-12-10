@@ -7,6 +7,8 @@ class ResultList extends Component {
   render() {
     let { todos, filter, toggleRow, deleteTodo } = this.props;
     let selection = (todo) => {
+      if (todo.deleted) return false;
+      
       switch (filter) {
         case SHOW_ACTIVE:
           return todo.active;
