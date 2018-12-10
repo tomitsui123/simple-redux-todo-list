@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import InputField from './containers/InputField';
-import ResultList from './containers/ResultList';
-import Filter from './containers/Filter';
+import '../App.css';
+import InputField from '../containers/InputField';
+import ResultList from '../containers/ResultList';
+import Filter from '../containers/Filter';
 
 class App extends Component {
   render() {
